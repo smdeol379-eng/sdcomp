@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dcompany LLC — Performance Media &amp; Campaign Management</title>
+<meta name="description" content="Dcompany LLC runs performance media buying, affiliate campaign management, and conversion creative for brands that need results, not noise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --panel:#111113;
+    --ink:#efece4;
+    --ink-dim:#a8a49a;
+    --line:#28272a;
+    --signal:#e6a13c;
+    --signal-dim:#7a5a26;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    background:var(--black);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--signal);color:#141414;}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(10,10,10,0.72);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .wordmark{
+    font-family:'Instrument Serif', serif;
+    font-size:24px;
+    letter-spacing:0.01em;
+  }
+  .wordmark span{color:var(--signal);}
+  .nav-links{display:flex; gap:36px; font-size:15px;}
+  .nav-links a{
+    text-decoration:none; color:var(--ink-dim);
+    transition:color 0.2s ease;
+    position:relative;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--ink);}
+  .nav-links a:focus-visible{outline:2px solid var(--signal); outline-offset:4px; border-radius:2px;}
+  .nav-cta{
+    font-size:14px;
+    padding:10px 20px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:border-color 0.2s ease, background 0.2s ease;
+  }
+  .nav-cta:hover, .nav-cta:focus-visible{border-color:var(--signal); background:rgba(230,161,60,0.08);}
+  .burger{display:none;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex; align-items:center;
+    padding-top:100px; padding-bottom:80px;
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow{
+    color:var(--signal); font-size:14px; font-weight:600;
+    margin-bottom:22px;
+  }
+  h1{
+    font-family:'Instrument Serif', serif;
+    font-weight:400;
+    font-size:clamp(42px, 6.2vw, 76px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+  }
+  .hero p.lede{
+    margin-top:26px;
+    max-width:46ch;
+    font-size:18px;
+    color:var(--ink-dim);
+  }
+  .hero-actions{
+    margin-top:40px;
+    display:flex; gap:16px; align-items:center; flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-block;
+    background:var(--signal);
+    color:#141311;
+    font-weight:700;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:2px;
+    text-decoration:none;
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary:hover, .btn-primary:focus-visible{background:#f0b25c; transform:translateY(-1px);}
+  .btn-primary:focus-visible{outline:2px solid var(--ink); outline-offset:3px;}
+  .btn-ghost{
+    font-size:15px; color:var(--ink-dim); text-decoration:none;
+    border-bottom:1px solid var(--line);
+    padding-bottom:3px;
+    transition:color 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible{color:var(--ink); border-color:var(--signal);}
+
+  /* signal line svg */
+  .signal-box{position:relative;}
+  .signal-box svg{width:100%; height:auto; display:block;}
+  .signal-path{
+    fill:none;
+    stroke:var(--signal);
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.2s cubic-bezier(.4,.1,.2,1) 0.3s forwards;
+  }
+  .signal-dot{
+    fill:var(--signal);
+    opacity:0;
+    animation:fadein 0.6s ease 2.1s forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes fadein{ to{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){
+    .signal-path{stroke-dashoffset:0; animation:none;}
+    .signal-dot{opacity:1; animation:none;}
+  }
+  .signal-caption{
+    margin-top:18px;
+    font-size:13px;
+    color:var(--ink-dim);
+    display:flex; justify-content:space-between;
+    border-top:1px solid var(--line);
+    padding-top:14px;
+  }
+
+  section{padding:120px 0;}
+  .section-head{
+    display:grid;
+    grid-template-columns:1fr 1.4fr;
+    gap:40px;
+    margin-bottom:64px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+  .section-head h2{
+    font-family:'Instrument Serif', serif;
+    font-weight:400;
+    font-size:clamp(30px,3.6vw,44px);
+    line-height:1.1;
+  }
+  .section-head p{
+    color:var(--ink-dim);
+    font-size:16.5px;
+    max-width:52ch;
+    align-self:end;
+  }
+
+  /* SERVICES */
+  .services{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service{
+    background:var(--black);
+    padding:44px 40px;
+  }
+  .service h3{
+    font-size:20px; font-weight:700; margin-bottom:14px;
+  }
+  .service p{color:var(--ink-dim); font-size:15.5px; max-width:38ch;}
+
+  /* APPROACH */
+  .phases{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    position:relative;
+  }
+  .phases::before{
+    content:"";
+    position:absolute; left:0; right:0; top:38px;
+    height:1px; background:var(--line);
+  }
+  .phase{position:relative; padding-right:32px;}
+  .phase-num{
+    font-family:'Instrument Serif', serif;
+    font-size:56px;
+    color:transparent;
+    -webkit-text-stroke:1.4px var(--signal);
+    line-height:1;
+    background:var(--black);
+    display:inline-block;
+    padding-right:16px;
+    position:relative;
+    z-index:1;
+  }
+  .phase h3{margin-top:22px; font-size:19px; font-weight:700;}
+  .phase p{margin-top:10px; color:var(--ink-dim); font-size:15px; max-width:34ch;}
+
+  /* CONTACT */
+  .contact{
+    text-align:left;
+  }
+  .contact-box{
+    border-top:1px solid var(--line);
+    padding-top:28px;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:40px;
+    align-items:end;
+  }
+  .contact h2{
+    font-family:'Instrument Serif', serif;
+    font-weight:400;
+    font-size:clamp(34px,5vw,58px);
+    line-height:1.08;
+  }
+  .contact-details{
+    display:flex; flex-direction:column; gap:14px;
+    font-size:16px;
+  }
+  .contact-details a{
+    text-decoration:none;
+    color:var(--ink);
+    border-bottom:1px solid var(--signal-dim);
+    width:fit-content;
+    transition:border-color 0.2s ease, color 0.2s ease;
+  }
+  .contact-details a:hover, .contact-details a:focus-visible{border-color:var(--signal); color:var(--signal);}
+  .contact-label{color:var(--ink-dim); font-size:13px;}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px 0 48px;
+  }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:13.5px; color:var(--ink-dim);
+    flex-wrap:wrap; gap:12px;
+  }
+
+  @media (max-width: 860px){
+    .nav-links{display:none;}
+    .hero-inner{grid-template-columns:1fr;}
+    .signal-box{order:-1; margin-bottom:8px;}
+    .section-head{grid-template-columns:1fr; gap:14px;}
+    .services{grid-template-columns:1fr;}
+    .phases{grid-template-columns:1fr; row-gap:36px;}
+    .phases::before{display:none;}
+    .contact-box{grid-template-columns:1fr; align-items:start;}
+    section{padding:80px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="wordmark">Dcompany<span>.</span></div>
+    <div class="nav-links">
+      <a href="#work">What We Do</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="mailto:infodcompanyllc@gmail.com">Start a project</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow">Media buying &amp; performance campaigns</div>
+        <h1>We turn ad spend into a signal you can act on.</h1>
+        <p class="lede">Dcompany LLC plans, builds, and runs performance media campaigns — media buying, affiliate acquisition, and conversion creative, managed by people who watch the numbers daily.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="mailto:infodcompanyllc@gmail.com">Talk to us</a>
+          <a class="btn-ghost" href="#work">See what we run</a>
+        </div>
+      </div>
+      <div class="signal-box">
+        <svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path class="signal-path" d="M0,150 L40,150 L60,90 L85,190 L110,60 L135,130 L160,110 L190,170 L220,50 L250,120 L280,95 L310,140 L340,80 L370,105 L420,70"/>
+          <circle class="signal-dot" cx="420" cy="70" r="5"/>
+        </svg>
+        <div class="signal-caption">
+          <span>Live campaign feed</span>
+          <span>CPA trending down</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What we run</h2>
+        <p>Four disciplines, one team — so your media, creative, and tracking never work against each other.</p>
+      </div>
+      <div class="services">
+        <div class="service">
+          <h3>Media Buying</h3>
+          <p>Campaign setup, bid strategy, and daily optimization across the platforms your audience actually spends time on.</p>
+        </div>
+        <div class="service">
+          <h3>Affiliate Campaign Management</h3>
+          <p>End-to-end handling of affiliate offers — from pixel setup and compliance to payout tracking and scaling winners.</p>
+        </div>
+        <div class="service">
+          <h3>Conversion Creative</h3>
+          <p>UGC-style ads, hooks, and landing experiences built to be tested fast and kept only if they earn their place.</p>
+        </div>
+        <div class="service">
+          <h3>Performance Analytics</h3>
+          <p>Clear reporting on what's spending, what's converting, and what to cut — no vanity metrics, no guesswork.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How a campaign moves</h2>
+        <p>The same three phases, every time — so nothing scales before it's proven.</p>
+      </div>
+      <div class="phases">
+        <div class="phase">
+          <span class="phase-num">01</span>
+          <h3>Diagnose</h3>
+          <p>We map the offer, the audience, and the numbers that already exist before touching a single dollar of spend.</p>
+        </div>
+        <div class="phase">
+          <span class="phase-num">02</span>
+          <h3>Test</h3>
+          <p>Multiple creatives and angles run in parallel against tight budgets until the data points somewhere clear.</p>
+        </div>
+        <div class="phase">
+          <span class="phase-num">03</span>
+          <h3>Scale</h3>
+          <p>Budget follows what's already working — with the same discipline applied at ten times the spend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="contact-box">
+        <h2>Have an offer worth running? Let's look at it.</h2>
+        <div class="contact-details">
+          <span class="contact-label">Email</span>
+          <a href="mailto:infodcompanyllc@gmail.com">infodcompanyllc@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>Dcompany LLC</span>
+    <span>infodcompanyllc@gmail.com</span>
+    <span>&copy; <span id="year"></span> All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
